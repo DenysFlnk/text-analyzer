@@ -9,12 +9,14 @@ public class ShortestWordsFinder {
 
     private final int wordLowerBound;
 
-    private String shortestWord = "SomeLongWordToInitializeClassField";
+    private String shortestWord;
 
-    private final List<String> shortestWordsList = new ArrayList<>();
+    private final List<String> shortestWordsList;
 
     public ShortestWordsFinder(boolean includeOneLetterWords) {
         this.wordLowerBound = includeOneLetterWords ? 0 : 1;
+        this.shortestWord = "SomeLongWordToInitializeClassField";
+        this.shortestWordsList = new ArrayList<>();
     }
 
     public List<String> getShortestWords() {
