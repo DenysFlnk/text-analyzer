@@ -13,6 +13,7 @@ public class TextAnalyzer {
         WordsCounter wordsCounter = new WordsCounter();
         MostCommonWordFinder commonWordFinder = new MostCommonWordFinder();
         AverageWordLengthFinder averageWordLengthFinder = new AverageWordLengthFinder();
+        LongestWordFinder longestWordFinder = new LongestWordFinder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             StringBuilder lines = new StringBuilder();
@@ -30,6 +31,7 @@ public class TextAnalyzer {
             wordsCounter.countWords(text);
             commonWordFinder.countWordsOccurrence(text);
             averageWordLengthFinder.countCharacters(text);
+            longestWordFinder.findLongestWord(text);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(String.format("File %s not found", input));
         } catch (IOException e) {
@@ -40,5 +42,6 @@ public class TextAnalyzer {
         System.out.println(commonWordFinder.getMostCommonWord());
         System.out.println(wordsCounter.getWordsCount());
         System.out.println(averageWordLengthFinder.getAverageWordLength(wordsCounter.getWordsCount()));
+        System.out.println(longestWordFinder.getLongestWord());
     }
 }

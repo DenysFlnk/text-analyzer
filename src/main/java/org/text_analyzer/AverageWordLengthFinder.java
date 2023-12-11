@@ -1,5 +1,6 @@
 package org.text_analyzer;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class AverageWordLengthFinder {
@@ -15,7 +16,9 @@ public class AverageWordLengthFinder {
         this.characterCounter += count;
     }
 
-    public float getAverageWordLength(long totalWords) {
-        return (float) characterCounter / totalWords;
+    public String getAverageWordLength(long totalWords) {
+        DecimalFormat format = new DecimalFormat("0.00");
+        float result = (float) characterCounter / totalWords;
+        return format.format(result);
     }
 }

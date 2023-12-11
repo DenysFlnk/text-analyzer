@@ -27,13 +27,12 @@ public class ShortestWordsFinder {
         String firstSmallestWord;
         firstSmallestWord = Arrays.stream(text)
                 .filter((word) -> word.length() > this.wordLowerBound && word.length() <= this.shortestWord.length())
-                .min(Comparator.comparingInt(String::length)).orElse(null);
+                .min(Comparator.comparingInt(String::length)).orElseThrow(() -> new RuntimeException("Empty text"));
 
-        if (firstSmallestWord != null) {
-            Arrays.stream(text).filter((word) -> word.length() == firstSmallestWord.length())
-                    .map(String::toLowerCase)
-                    .forEach(this::addWordToList);
-        }
+        Arrays.stream(text).filter((word) -> word.length() == firstSmallestWord.length())
+                .map(String::toLowerCase)
+                .forEach(this::addWordToList);
+
     }
 
     private void addWordToList(String newWord) {
