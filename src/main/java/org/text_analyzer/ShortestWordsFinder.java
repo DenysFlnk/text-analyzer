@@ -29,6 +29,7 @@ public class ShortestWordsFinder {
 
         if (firstSmallestWord != null) {
             Arrays.stream(text).filter((word) -> word.length() == firstSmallestWord.length())
+                    .map(String::toLowerCase)
                     .forEach(this::addWordToList);
         }
     }

@@ -10,6 +10,7 @@ public class TextAnalyzer {
         String input = args[0];
 
         ShortestWordsFinder shortestWordsFinder = new ShortestWordsFinder(false);
+        WordsCounter wordsCounter = new WordsCounter();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             StringBuilder lines = new StringBuilder();
@@ -22,7 +23,9 @@ public class TextAnalyzer {
                 }
             }
             String[] text = lines.toString().split(" ");
+
             shortestWordsFinder.findShortestWordsInText(text);
+            wordsCounter.countWords(text);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(String.format("File %s not found", input));
         } catch (IOException e) {
@@ -30,5 +33,6 @@ public class TextAnalyzer {
         }
 
         System.out.println(shortestWordsFinder.getShortestWords());
+        System.out.println(wordsCounter.getWordsCount());
     }
 }
