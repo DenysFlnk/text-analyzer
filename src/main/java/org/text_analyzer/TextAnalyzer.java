@@ -11,6 +11,7 @@ public class TextAnalyzer {
 
         ShortestWordsFinder shortestWordsFinder = new ShortestWordsFinder(false);
         WordsCounter wordsCounter = new WordsCounter();
+        MostCommonWordFinder commonWordFinder = new MostCommonWordFinder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             StringBuilder lines = new StringBuilder();
@@ -26,6 +27,7 @@ public class TextAnalyzer {
 
             shortestWordsFinder.findShortestWordsInText(text);
             wordsCounter.countWords(text);
+            commonWordFinder.countWordsOccurrence(text);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(String.format("File %s not found", input));
         } catch (IOException e) {
@@ -34,5 +36,6 @@ public class TextAnalyzer {
 
         System.out.println(shortestWordsFinder.getShortestWords());
         System.out.println(wordsCounter.getWordsCount());
+        System.out.println(commonWordFinder.getMostCommonWord());
     }
 }
