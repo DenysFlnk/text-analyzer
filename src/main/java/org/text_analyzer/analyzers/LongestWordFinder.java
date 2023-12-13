@@ -1,9 +1,9 @@
-package org.text_analyzer;
+package org.text_analyzer.analyzers;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class LongestWordFinder {
+public class LongestWordFinder implements Analyzer{
     String longest;
 
     public LongestWordFinder() {
@@ -20,5 +20,15 @@ public class LongestWordFinder {
 
     public String getLongestWord() {
         return this.longest;
+    }
+
+    @Override
+    public void printResultToConsole() {
+        System.out.println("Longest word - " + getLongestWord());
+    }
+
+    @Override
+    public String getPrintResult() {
+        return "Longest word - " + getLongestWord();
     }
 }

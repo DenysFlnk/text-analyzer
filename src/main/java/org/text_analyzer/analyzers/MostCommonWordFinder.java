@@ -1,9 +1,9 @@
-package org.text_analyzer;
+package org.text_analyzer.analyzers;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MostCommonWordFinder {
+public class MostCommonWordFinder implements Analyzer{
     private String mostCommon;
 
     private final Map<String, Integer> commonWords;
@@ -46,4 +46,13 @@ public class MostCommonWordFinder {
         this.mostCommon = word;
     }
 
+    @Override
+    public void printResultToConsole() {
+        System.out.println("Most common word - " + getMostCommonWord());
+    }
+
+    @Override
+    public String getPrintResult() {
+        return "Most common word - " + getMostCommonWord();
+    }
 }

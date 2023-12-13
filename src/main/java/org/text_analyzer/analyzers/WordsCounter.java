@@ -1,8 +1,8 @@
-package org.text_analyzer;
+package org.text_analyzer.analyzers;
 
 import java.util.Arrays;
 
-public class WordsCounter {
+public class WordsCounter implements Analyzer{
     private long counter = 0;
 
     public long getWordsCount() {
@@ -13,5 +13,15 @@ public class WordsCounter {
         long sum = Arrays.stream(text).mapToInt(String::length).filter((length) -> length > 0)
                 .count();
         this.counter = this.counter + sum;
+    }
+
+    @Override
+    public void printResultToConsole() {
+        System.out.println("Total words count - " + getWordsCount());
+    }
+
+    @Override
+    public String getPrintResult() {
+        return "Total words count - " + getWordsCount();
     }
 }

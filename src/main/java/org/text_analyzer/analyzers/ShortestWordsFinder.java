@@ -1,11 +1,11 @@
-package org.text_analyzer;
+package org.text_analyzer.analyzers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class ShortestWordsFinder {
+public class ShortestWordsFinder implements Analyzer {
 
     private final int wordLowerBound;
 
@@ -47,5 +47,15 @@ public class ShortestWordsFinder {
             this.shortestWordsList.clear();
             this.shortestWordsList.add(newWord);
         }
+    }
+
+    @Override
+    public void printResultToConsole() {
+        System.out.println("Shortest words - " + getShortestWords().toString());
+    }
+
+    @Override
+    public String getPrintResult() {
+        return "Shortest words - " + getShortestWords().toString();
     }
 }
