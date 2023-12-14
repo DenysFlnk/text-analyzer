@@ -1,9 +1,6 @@
 package org.text_analyzer.analyzers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class ShortestWordsFinder implements Analyzer {
 
@@ -11,16 +8,12 @@ public class ShortestWordsFinder implements Analyzer {
 
     private String shortestWord;
 
-    private final List<String> shortestWordsList;
+    private final HashSet<String> shortestWordsSet;
 
     public ShortestWordsFinder(boolean includeOneLetterWords) {
         this.wordLowerBound = includeOneLetterWords ? 0 : 1;
         this.shortestWord = "SomeLongWordToInitializeClassField";
-        this.shortestWordsList = new ArrayList<>();
-    }
-
-    public List<String> getShortestWords() {
-        return shortestWordsList;
+        this.shortestWordsSet = new HashSet<>();
     }
 
     public void findShortestWordsInText(String[] text) {
@@ -39,13 +32,13 @@ public class ShortestWordsFinder implements Analyzer {
         int shortestLength = this.shortestWord.length();
         int newLength = newWord.length();
 
-        if (shortestLength == newLength && !this.shortestWordsList.contains(newWord)) {
-            this.shortestWordsList.add(newWord);
+        if (shortestLength == newLength) {
+            this.shortestWordsSet.add(newWord);
 
         } else if (shortestLength > newLength) {
             this.shortestWord = newWord;
-            this.shortestWordsList.clear();
-            this.shortestWordsList.add(newWord);
+            this.shortestWordsSet.clear();
+            this.shortestWordsSet.add(newWord);
         }
     }
 
@@ -57,5 +50,9 @@ public class ShortestWordsFinder implements Analyzer {
     @Override
     public String getPrintResult() {
         return "Shortest words - " + getShortestWords().toString();
+    }
+
+    public Set<String> getShortestWords() {
+        return shortestWordsSet;
     }
 }
