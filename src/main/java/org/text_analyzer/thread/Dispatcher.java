@@ -2,6 +2,7 @@ package org.text_analyzer.thread;
 
 import org.text_analyzer.thread.analyzers.ShortestWordsFinderRunner;
 import org.text_analyzer.thread.analyzers.TaskRunner;
+import org.text_analyzer.thread.analyzers.WordCounterRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,9 @@ public class Dispatcher {
     }
 
     private void initAnalyzers() {
-        this.analyzers.add(new ShortestWordsFinderRunner(false, this.interrupter,
-                new LinkedBlockingQueue<>()));
+        this.analyzers.add(new ShortestWordsFinderRunner(false, new LinkedBlockingQueue<>(),
+                this.interrupter));
+        this.analyzers.add(new WordCounterRunner(new LinkedBlockingQueue<>(), this.interrupter));
     }
 
     private void startAnalyzers() {

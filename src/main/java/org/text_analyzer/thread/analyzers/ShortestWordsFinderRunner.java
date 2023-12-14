@@ -6,40 +6,29 @@ import org.text_analyzer.thread.Interrupter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-public class ShortestWordsFinderRunner extends TaskRunner{
+public class ShortestWordsFinderRunner extends TaskRunner {
 
     private final ShortestWordsFinder shortestWordsFinder;
 
-    private final Interrupter interrupter;
-
-    private final BlockingQueue<String[]> blockingQueue;
-
-    public ShortestWordsFinderRunner(boolean includeOneLetterWords, Interrupter interrupter,
-                                     BlockingQueue<String[]> blockingQueue) {
-        super("ShortestWordsFinderRunner");
+    public ShortestWordsFinderRunner(boolean includeOneLetterWords, BlockingQueue<String[]> tasks,
+                                     Interrupter interrupter) {
+        super("ShortestWordsFinderRunner", tasks, interrupter);
         this.shortestWordsFinder = new ShortestWordsFinder(includeOneLetterWords);
-        this.interrupter = interrupter;
-        this.blockingQueue = blockingQueue;
     }
 
     @Override
     public void run() {
         do {
             try {
-                String[] text = blockingQueue.poll(100, TimeUnit.MILLISECONDS);
+                String[] text = this.tasks.poll(100, TimeUnit.MILLISECONDS);
                 if (text != null) {
                     this.shortestWordsFinder.findShortestWordsInText(text);
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        } while (!interrupter.isInterrupted());
+        } while (!this.interrupter.isInterrupted());
 
         this.shortestWordsFinder.printResultToConsole();
-    }
-
-    @Override
-    public void addTask(String[] text) {
-        this.blockingQueue.add(text);
     }
 }
