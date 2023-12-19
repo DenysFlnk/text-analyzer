@@ -1,4 +1,4 @@
-package org.text_analyzer.thread.analyzers;
+package org.text_analyzer.thread.runners;
 
 import org.text_analyzer.analyzers.WordCounter;
 import org.text_analyzer.thread.Interrupter;
@@ -28,7 +28,7 @@ public class WordCounterRunner extends TaskRunner {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        } while (!this.interrupter.isInterrupted());
+        } while (!this.interrupter.isInterrupted() || !this.tasks.isEmpty());
 
         this.wordCounter.printResultToConsole();
         this.finished = true;

@@ -3,7 +3,7 @@ package org.text_analyzer.analyzers;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MostCommonWordFinder implements Analyzer{
+public class MostCommonWordFinder implements ResultPrintable {
     private String mostCommon;
 
     private final Map<String, Integer> commonWords;

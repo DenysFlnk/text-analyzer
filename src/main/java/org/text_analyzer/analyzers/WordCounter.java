@@ -2,7 +2,7 @@ package org.text_analyzer.analyzers;
 
 import java.util.Arrays;
 
-public class WordCounter implements Analyzer{
+public class WordCounter implements ResultPrintable {
     private long counter = 0;
 
     public long getWordsCount() {

@@ -3,7 +3,7 @@ package org.text_analyzer.analyzers;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
-public class AverageWordLengthFinder implements Analyzer{
+public class AverageWordLengthFinder implements ResultPrintable {
 
     private long characterCounter;
 

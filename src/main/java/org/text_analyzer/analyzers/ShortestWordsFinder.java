@@ -2,7 +2,7 @@ package org.text_analyzer.analyzers;
 
 import java.util.*;
 
-public class ShortestWordsFinder implements Analyzer {
+public class ShortestWordsFinder implements ResultPrintable {
 
     private final int wordLowerBound;
 

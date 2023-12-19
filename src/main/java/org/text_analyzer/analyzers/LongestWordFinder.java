@@ -3,7 +3,7 @@ package org.text_analyzer.analyzers;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class LongestWordFinder implements Analyzer{
+public class LongestWordFinder implements ResultPrintable {
     String longest;
 
     public LongestWordFinder() {

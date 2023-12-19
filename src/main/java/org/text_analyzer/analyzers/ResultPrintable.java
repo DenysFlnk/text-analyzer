@@ -1,6 +1,6 @@
 package org.text_analyzer.analyzers;
 
-public interface Analyzer {
+public interface ResultPrintable {
     void printResultToConsole();
     String getPrintResult();
 }

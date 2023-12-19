@@ -1,4 +1,4 @@
-package org.text_analyzer.thread.analyzers;
+package org.text_analyzer.thread.runners;
 
 import org.text_analyzer.thread.Interrupter;
 
