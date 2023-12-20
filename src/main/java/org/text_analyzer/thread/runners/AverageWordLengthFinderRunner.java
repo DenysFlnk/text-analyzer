@@ -23,7 +23,7 @@ public class AverageWordLengthFinderRunner extends TaskRunner{
     public void run() {
         do {
             try {
-                String[] text = this.tasks.poll(100, TimeUnit.MILLISECONDS);
+                String[] text = this.tasks.poll(10, TimeUnit.MILLISECONDS);
                 if (text != null) {
                     this.avgWordLengthFinder.countCharacters(text);
                 }
@@ -38,12 +38,17 @@ public class AverageWordLengthFinderRunner extends TaskRunner{
                 break;
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e.getMessage());
             }
         }
 
         this.avgWordLengthFinder.printResultToConsole();
+    }
+
+    @Override
+    public String getTaskResult() {
+        return this.avgWordLengthFinder.getPrintResult();
     }
 }

@@ -19,7 +19,7 @@ public class MostCommonWordFinderRunner extends TaskRunner {
     public void run() {
         do {
             try {
-                String[] text = this.tasks.poll(100, TimeUnit.MILLISECONDS);
+                String[] text = this.tasks.poll(10, TimeUnit.MILLISECONDS);
                 if (text != null) {
                     this.mostCommonWordFinder.countWordsOccurrence(text);
                 }
@@ -29,5 +29,10 @@ public class MostCommonWordFinderRunner extends TaskRunner {
         } while (!this.interrupter.isInterrupted() || !this.tasks.isEmpty());
 
         this.mostCommonWordFinder.printResultToConsole();
+    }
+
+    @Override
+    public String getTaskResult() {
+        return this.mostCommonWordFinder.getPrintResult();
     }
 }

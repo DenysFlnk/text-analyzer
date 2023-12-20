@@ -22,4 +22,6 @@ public abstract class TaskRunner extends Thread{
     public void addTask(String[] text) {
         this.tasks.add(text);
     }
+
+    public abstract String getTaskResult();
 }

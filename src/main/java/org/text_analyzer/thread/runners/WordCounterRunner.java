@@ -21,7 +21,7 @@ public class WordCounterRunner extends TaskRunner {
     public void run() {
         do {
             try {
-                String[] text = this.tasks.poll(100, TimeUnit.MILLISECONDS);
+                String[] text = this.tasks.poll(10, TimeUnit.MILLISECONDS);
                 if (text != null) {
                     this.wordCounter.countWords(text);
                 }
@@ -40,5 +40,10 @@ public class WordCounterRunner extends TaskRunner {
 
     public long getWordCount() {
         return this.wordCounter.getWordsCount();
+    }
+
+    @Override
+    public String getTaskResult() {
+        return this.wordCounter.getPrintResult();
     }
 }
